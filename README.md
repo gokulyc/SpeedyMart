@@ -4,7 +4,10 @@
     # commands to run
 
     # clone the repo
-    git clone https://github.com/gokulyc/SpeedyMart.git 
+    git clone https://github.com/gokulyc/SpeedyMart.git
+
+    # setup pre-commit
+    pip install -r requirements-dev.txt
 
     # Flask server
     python main.py
