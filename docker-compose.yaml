@@ -10,12 +10,14 @@ services:
         - "5000:5000"
       volumes:
         - ./instance:/app/instance
-  # postgres_container:
-  #   image: postgres:15.4
-  #   restart: always
-  #   env_file:
-  #       - .env.db
-  #   ports:
-  #     - '5432:5432'
-  #   volumes: 
-  #     - ./db_data:/var/lib/postgresql/data
+      depends_on:
+        - postgres_container
+  postgres_container:
+    image: postgres:15.4
+    restart: always
+    env_file:
+        - .env.db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db_data:/var/lib/postgresql/data

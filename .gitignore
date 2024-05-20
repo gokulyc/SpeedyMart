@@ -164,3 +164,4 @@ reports/*
 db_data/*
 .env.db
 .env.prod
+instance/test.db

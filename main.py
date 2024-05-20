@@ -1,6 +1,6 @@
-from flask import render_template, redirect, url_for, request, jsonify, flash
+from flask import render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug.exceptions import BadRequest, NotFound
+from werkzeug.exceptions import NotFound
 from flask_jwt_extended import (
     JWTManager,
     current_user,
@@ -9,9 +9,6 @@ from flask_jwt_extended import (
     set_access_cookies,
     unset_jwt_cookies,
 )
-import sqlalchemy as sa
-from datetime import datetime, UTC
-from decimal import Decimal
 
 from models import db, Products, User
 from forms import RegisterForm, AddProductForm
@@ -21,9 +18,9 @@ import os
 
 app = get_flask_env_app()
 
-app.config[
-    "JWT_SECRET_KEY"
-] = "jwt-secret-string-!@#"  # Use a real secret key in production
+app.config["JWT_SECRET_KEY"] = (
+    "jwt-secret-string-!@#"  # Use a real secret key in production
+)
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 
 jwt = JWTManager(app)
@@ -154,7 +151,6 @@ def add_products_sample_data():
         print(f"Unable to add products : {e}")
 
 
-
 if __name__ == "__main__":
     with app.app_context():
         db.init_app(app)
@@ -162,7 +158,7 @@ if __name__ == "__main__":
             # db.drop_all()
             db.create_all()
             add_accounts_data()
-            # add_products_sample_data()
+            add_products_sample_data()
         except Exception as e:
             print(e)
-    app.run(host=os.getenv("BACKEND_FLASK_HOST","127.0.0.1"))
+    app.run(host=os.getenv("BACKEND_FLASK_HOST", "127.0.0.1"))
