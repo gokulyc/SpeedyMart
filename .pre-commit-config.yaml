@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.6.0
     hooks:
     -   id: check-yaml
     -   id: end-of-file-fixer
@@ -13,3 +13,10 @@ repos:
       args: [ --fix ]
     # Run the formatter.
     - id: ruff-format
+-   repo: local
+    hooks:
+    -   id: pytest
+        name: pytest
+        entry: pytest -s
+        language: system
+        types: [python]
