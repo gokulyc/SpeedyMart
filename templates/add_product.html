@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.name.label(class_="form-label-sm") }}<br>
+        {{ form.name(class_="form-control-sm",size=40) }}
+    </p>
+    <p>
+        {{ form.category.label(class_="form-label-sm") }}<br>
+        {{ form.category(class_="form-control-sm",size=40) }}
+    </p>
+    <p>
+        {{ form.image_url.label(class_="form-label-sm") }}<br>
+        {{ form.image_url(class_="form-control-sm",size=40) }}
+    </p>
+    <p><input class="btn btn-primary" type="submit" value="Register"></p>
+</form>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% endblock %}

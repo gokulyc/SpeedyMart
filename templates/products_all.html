@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Register</h2>
+{% for p in products %}
+<div class="card" style="width: 18rem;">
+    <img src="{{p.image_url}}" class="card-img-top" alt="product image">
+    <div class="card-body">
+        <h5 class="card-title">{{p.name}}</h5>
+        <p class="card-text">Product Name : {{ p.name }} is of category : {{p.category}}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
