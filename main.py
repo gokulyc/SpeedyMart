@@ -113,7 +113,7 @@ def add_product():
 @app.route("/list_products")
 def list_products():
     products: list[Products] = [p.to_dict() for p in Products.query.all()]
-    print(products)
+    # print(products)
     if len(products) == 0:
         raise NotFound
     return render_template("products_all.html", products=products)
